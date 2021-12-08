@@ -1,14 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { EccomerceProvider } from '../../itsavirus/src/context/EcommerceContext';
+// import { EccomerceProvider } from '../../itsavirus/src/context/ecommerceContext';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+	<EccomerceProvider>
+		<Router>
+			<App />
+		</Router>
+	</EccomerceProvider>,
+	document.getElementById('root'),
 );
 
 // If you want to start measuring performance in your app, pass a function

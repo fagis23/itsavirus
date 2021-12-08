@@ -1,26 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useRoutes, Navigate } from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import './styles/app.scss';
+import EcommerceView from './components/Ecommerce/EcommerceView/EcommerceView';
+import EcommerceDetail from './components/Ecommerce/EcommerceDetail/EcommerceDetail';
+
+const ViewComponent = () => {
+	return <EcommerceView />;
+};
+
+const App: React.FC = ({}) => {
+	const mainRoutes = {
+		path: '/',
+		element: <EcommerceView />,
+		children: [{ path: 'detail', element: <Navigate to="/view/detail" /> }],
+	};
+
+	const accountRoutes = {
+		path: '/view/detail',
+		element: <EcommerceDetail />,
+		children: [],
+	};
+
+	const routing = useRoutes([mainRoutes, accountRoutes]);
+
+	return <>{routing}</>;
+};
 
 export default App;
